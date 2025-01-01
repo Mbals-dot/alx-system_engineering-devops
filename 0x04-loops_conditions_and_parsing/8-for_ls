@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# List files in directory
 for file in *; do
   if [[ $file == *-* ]]; then
     echo "${file#*-}"

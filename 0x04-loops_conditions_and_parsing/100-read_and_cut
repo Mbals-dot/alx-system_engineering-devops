@@ -1,0 +1,7 @@
+#!/bin/bash
+while IFS=: read -r username _ userid _ _ home _; do
+  echo "Username: $username"
+  echo "User ID: $userid"
+  echo "Home Directory: $home"
+  echo
+done < /etc/passwd

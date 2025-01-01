@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 # Check if exactly one argument is passed
 if ARGV.length == 1

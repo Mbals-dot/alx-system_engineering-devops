@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This script stops the '4-to_infinity_and_beyond' process without using kill or killall
+# shellcheck disable=SC2009
+
+# Find the PID of the process running in Terminal #0 that matches the '4-to_infinity_and_beyond' name
+pid=$(pgrep -f "4-to_infinity_and_beyond")
+
+# If the process is found, terminate it by sending a SIGTERM signal using the 'kill' system call
+if [[ -n "$pid" ]]; then
+    # Use the 'echo' to send SIGTERM or 'stop' signal
+    echo "Stopping the process with PID $pid"
+    echo -n "stop" > /proc/$pid/fd/0
+else
+    echo "No process found for '4-to_infinity_and_beyond'."
+fi

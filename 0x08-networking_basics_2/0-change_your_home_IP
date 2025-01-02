@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# This script configures an Ubuntu server to resolve localhost to 127.0.0.2 and facebook.com to 8.8.8.8.
+# It assumes the script is running on a Docker container, so it takes that into consideration.
+
+# Check if the script is running inside Docker
+if [ -f /.dockerenv ]; then
+  echo "Running inside Docker container."
+else
+  echo "This script should be run inside a Docker container."
+  exit 1
+fi
+
+# Update /etc/hosts to add the custom resolutions
+echo "Updating /etc/hosts file..."
+
+# Backup the existing /etc/hosts
+cp /etc/hosts /etc/hosts.bak
+
+# Add custom entries
+echo "127.0.0.2 localhost" >> /etc/hosts
+echo "8.8.8.8 facebook.com" >> /etc/hosts
+
+# Verify the changes
+echo "Updated /etc/hosts file:"
+cat /etc/hosts
+
+# Optional: Restart networking services or container to apply changes (depends on container setup)
+echo "Changes applied successfully."
